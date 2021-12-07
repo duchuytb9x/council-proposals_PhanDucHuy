@@ -89,14 +89,20 @@ For the `subql-starter` project, you can try to query with the following code to
 
 ````graphql
 {
-  query{
-    starterEntities(first:10){
-      nodes{
-        field1,
-        field2,
-        field3
-      }
-    }
-  }
+	query {
+		councillors(first: 3, orderBy: NUMBER_OF_VOTES_DESC) {
+			nodes {
+				id
+				numberOfVotes
+				voteHistory(first: 5) {
+					totalCount
+					nodes {
+						approvedVote
+					}
+				}
+			}
+		}
+	}
 }
+
 ````
